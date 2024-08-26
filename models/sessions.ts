@@ -4,5 +4,7 @@ export interface Session {
   date: string
   time: string
   activity_id: number
+  distance: string
+  duration: string
   notes: string
 }
