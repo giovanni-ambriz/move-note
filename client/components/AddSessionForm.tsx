@@ -1,11 +1,7 @@
-import { useState, useEffect } from 'react'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { addNewSession } from '../apis/sessions'
-import { getAllUsers } from '../apis/users'
-import { getAllActivities } from '../apis/activities'
-import { Session } from '../../models/sessions'
-import { User } from '../../models/users'
-import { Activity } from '../../models/activity'
+import { useState } from 'react'
+import { useUsers } from '../hooks/useUsers'
+import { useActivities } from '../hooks/useActivities'
+import { useAddSession } from '../hooks/useAddSession'
 
 export default function SessionForm() {
   const [date, setDate] = useState('')
@@ -16,33 +12,9 @@ export default function SessionForm() {
   const [userId, setUserId] = useState<number | undefined>(undefined)
   const [activityId, setActivityId] = useState<number | undefined>(undefined)
 
-  const [users, setUsers] = useState<User[]>([])
-  const [activities, setActivities] = useState<Activity[]>([])
-
-  const queryClient = useQueryClient()
-  const addSessionMutation = useMutation({
-    mutationFn: (session: Session) => addNewSession(session),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['sessions'] })
-      setDate('')
-      setTime('00:00')
-      setDistance('')
-      setDuration('')
-      setNotes('')
-      setUserId(undefined)
-      setActivityId(undefined)
-    }
-  })
-
-  useEffect(() => {
-    async function fetchData() {
-      const usersData = await getAllUsers()
-      const activitiesData = await getAllActivities()
-      setUsers(usersData)
-      setActivities(activitiesData)
-    }
-    fetchData()
-  }, [])
+  const addSessionMutation = useAddSession()
+  const { data: users = [] } = useUsers()
+  const { data: activities = [] } = useActivities()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -55,7 +27,6 @@ export default function SessionForm() {
       duration,
       notes
     })
-
   }
 
   return (

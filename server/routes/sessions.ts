@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { Session } from '../../models/sessions.ts'
 // // import checkJwt, { JwtRequest } from '../auth0.ts'
 // import { StatusCodes } from 'http-status-codes'
 
@@ -31,6 +32,16 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+router.post('/', async (req, res) => {
+  try {
+    const session: Session = req.body
+    const newSession = await db.addNewSession(session)
+    res.status(201).json({ id: newSession[0], ...session })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+})
 // GET '/api/v1/sessions/activity/:id'
 
 router.get('/activity/:id', async (req, res) => {

@@ -11,7 +11,7 @@ export async function getSessionById(id: number): Promise<Session> {
   return db('sessions').select().where('id', id).first()
 }
 
-export async function addNewSession(session: Session): Promise<Session[]> {
+export async function addNewSession(session: Session): Promise<number[]> {
   return db('sessions').insert(session)
 }
 
