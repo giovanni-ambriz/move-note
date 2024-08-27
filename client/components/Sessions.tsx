@@ -10,15 +10,15 @@ export default function SessionsComponent() {
 
   return (
     <div>
-      <h1>Sessions</h1>
+      <h1>Recent Activity:</h1>
       <ul>
-        {sessions.map(session => (
+        {sessions?.map(session => (
           <li key={session.id}>
             {session.date} <button>Delete</button>
           </li>
         ))}
       </ul>
-      <button>Add New Session</button>
+      <button>Add New Training Session</button>
     </div>
   )
 }
