@@ -6,7 +6,7 @@ export async function getAllSessions(): Promise<Session[]> {
 }
 
 export async function getSessionById(id: number): Promise<Session> {
-  return db('sessions').select().first().where('id', id)
+  return db('sessions').select().where('id', id).first()
 }
 
 export async function addNewSession(session: Session): Promise<Session[]> {
@@ -14,23 +14,29 @@ export async function addNewSession(session: Session): Promise<Session[]> {
 }
 
 export async function deleteSession(id: number) {
-  return db('sessions').where('id', id).del
+  return db('sessions').where('id', id).del()
 }
 
-export async function getSessionsByActivity() {
+export async function getSessionsByActivity(activity_id: number) {
   const sessions = await db('sessions')
     .join('activity', 'sessions.activity_id', 'activity.id')
     .join('users', 'sessions.user_id', 'users.id')
     .select(
-      'sessions.id as session_id',
-      'users.name as user_name',
-      'users.email as user_email',
-      'activity.name as activity_name',
+      'sessions.id',
+      'users.name',
+      'activity.name',
       'sessions.date',
       'sessions.time',
+      'sessions.duration',
+      'sessions.distance',
       'sessions.notes',
     )
+    .where({ activity_id })
     .orderBy('activity.name', 'asc')
 
   return sessions
+}
+
+export async function addNote(id: number, notes: string) {
+  return db('sessions').where('id', id).update({ notes })
 }
