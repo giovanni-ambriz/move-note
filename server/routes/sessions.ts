@@ -26,17 +26,19 @@ router.get('/:id', async (req, res) => {
   try {
     const session = await db.getSessionById(id)
     const response = {
-      id: session.session_id,
+      id: session.id,
       date: session.date,
       time: session.time,
       distance: session.distance,
       duration: session.duration,
       notes: session.notes,
       activity: {
-        name: session.activity_name,
+        id: session.activity.id,
+        name: session.activity.name,
       },
       user: {
-        name: session.user_name,
+        id: session.user.id,
+        name: session.user.name,
       },
     }
     res.json(response)

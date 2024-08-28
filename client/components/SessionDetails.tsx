@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useSessionDetails } from '../hooks/useSessionDetails'
 import { useDeleteSession } from '../hooks/useDeleteSession';
+import { Link } from 'react-router-dom'
 
 export default function SessionDetails() {
   const { id } = useParams<{ id: string }>()
@@ -22,7 +23,9 @@ export default function SessionDetails() {
 
   return (
     <div>
-      <h2>{data?.activity.name}</h2>
+      <Link to={`/activities/${data?.activity.id}/sessions`}>
+        {data?.activity.name}
+      </Link>
       <p>by {data?.user.name}</p>
       <p>Date: {data?.date}</p>
       <p>Time: {data?.time}</p>

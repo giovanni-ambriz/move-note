@@ -8,7 +8,7 @@ export async function getAllSessions(): Promise<Session[]> {
 }
 
 export async function getSessionById(id: number): Promise<SessionData> {
-  return db('sessions')
+  const session = await db('sessions')
     .join('activity', 'sessions.activity_id', 'activity.id')
     .join('users', 'sessions.user_id', 'users.id')
     .where('sessions.id', id)
@@ -19,10 +19,35 @@ export async function getSessionById(id: number): Promise<SessionData> {
       'sessions.distance',
       'sessions.duration',
       'sessions.notes',
+      'activity.id as activity_id',
       'activity.name as activity_name',
+      'users.id as user_id',
       'users.name as user_name',
+      'users.email as user_email',
     )
     .first()
+
+  if (!session) {
+    throw new Error('Session not found')
+  }
+
+  return {
+    id: session.session_id,
+    date: session.date,
+    time: session.time,
+    distance: session.distance,
+    duration: session.duration,
+    notes: session.notes,
+    activity: {
+      id: session.activity_id,
+      name: session.activity_name,
+    },
+    user: {
+      id: session.user_id,
+      name: session.user_name,
+      email: session.user_email,
+    },
+  }
 }
 
 export async function addNewSession(session: Session): Promise<number[]> {

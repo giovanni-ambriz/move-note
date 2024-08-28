@@ -1,6 +1,4 @@
-import { useQueryClient } from '@tanstack/react-query'
 import { useActivities } from '../hooks/useActivities'
-import { useDeleteSession } from '../hooks/useDeleteSession'
 import { useSessions } from '../hooks/useSessions'
 import { Link } from 'react-router-dom'
 
@@ -29,9 +27,6 @@ export default function Sessions() {
     }).format(date);
   }
 
-
-
-
   return (
     <div>
       <h1>Recent Activity:</h1>
@@ -41,11 +36,11 @@ export default function Sessions() {
           return (
             <li key={session.id}>
               <Link to={`/sessions/${session.id}`}>
-                {formatDate(session.date)} - {activity?.name}
+                {activity?.name} - {session.distance} km - {session.duration} min
+                <br></br>
+                {formatDate(session.date)}
+                <br></br>
               </Link>
-              <br></br>
-              {session.distance} km - {session.duration} min
-              <br></br>
             </li>
           )
         })}
