@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSessionsByActivity } from '../hooks/useSessionsByActivity';
 
 export default function SessionsByActivity() {
@@ -10,13 +10,15 @@ export default function SessionsByActivity() {
 
   return (
     <div>
-      <h1>Sessions for Activity</h1>
+      <h1>{sessions?.[0]?.name} - Workouts</h1>
       <ul>
         {sessions?.map(session => (
           <li key={session.id}>
-            <p>Date: {session.date}</p>
-            <p>Distance: {session.distance} km</p>
-            <p>Duration: {session.duration} min</p>
+            <Link to={`/sessions/${session.id}`}>
+              <p>Date: {session.date}</p>
+              <p>Distance: {session.distance} km</p>
+              <p>Duration: {session.duration} min</p>
+            </Link>
           </li>
         ))}
       </ul>
