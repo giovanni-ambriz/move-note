@@ -24,8 +24,22 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const id = Number(req.params.id)
   try {
-    const sessions = await db.getSessionById(id)
-    res.json(sessions)
+    const session = await db.getSessionById(id)
+    const response = {
+      id: session.session_id,
+      date: session.date,
+      time: session.time,
+      distance: session.distance,
+      duration: session.duration,
+      notes: session.notes,
+      activity: {
+        name: session.activity_name,
+      },
+      user: {
+        name: session.user_name,
+      },
+    }
+    res.json(response)
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'Something went wrong' })

@@ -5,7 +5,7 @@ export function useDeleteSession() {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: deleteSession,
+    mutationFn: (id: number) => deleteSession(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['sessions'] })
     },

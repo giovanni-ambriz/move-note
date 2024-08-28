@@ -1,5 +1,5 @@
 import db from './connection.ts'
-import { Session } from '../../models/sessions.ts'
+import { Session, SessionData } from '../../models/sessions.ts'
 import { User } from '../../models/users.ts'
 import { Activity } from '../../models/activity.ts'
 
@@ -7,8 +7,22 @@ export async function getAllSessions(): Promise<Session[]> {
   return db('sessions').select()
 }
 
-export async function getSessionById(id: number): Promise<Session> {
-  return db('sessions').select().where('id', id).first()
+export async function getSessionById(id: number): Promise<SessionData> {
+  return db('sessions')
+    .join('activity', 'sessions.activity_id', 'activity.id')
+    .join('users', 'sessions.user_id', 'users.id')
+    .where('sessions.id', id)
+    .select(
+      'sessions.id as session_id',
+      'sessions.date',
+      'sessions.time',
+      'sessions.distance',
+      'sessions.duration',
+      'sessions.notes',
+      'activity.name as activity_name',
+      'users.name as user_name',
+    )
+    .first()
 }
 
 export async function addNewSession(session: Session): Promise<number[]> {

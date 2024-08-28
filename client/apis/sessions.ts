@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { Session } from '../../models/sessions'
+import { Session, SessionData } from '../../models/sessions'
 
 const rootUrl = '/api/v1/sessions'
 
@@ -8,7 +8,7 @@ export async function getAllSessions(): Promise<Session[]> {
   return res.body
 }
 
-export async function getSessionById(id: number): Promise<Session> {
+export async function getSessionById(id: number): Promise<SessionData> {
   const res = await request.get(`${rootUrl}/${id}`)
   return res.body
 }
