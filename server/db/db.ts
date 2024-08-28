@@ -30,7 +30,7 @@ export async function addNewSession(session: Session): Promise<number[]> {
 }
 
 export async function deleteSession(id: number) {
-  return db('sessions').where('id', id).del()
+  return db('sessions').where('sessions.id', id).del()
 }
 
 export async function getSessionsByActivity(activity_id: number) {

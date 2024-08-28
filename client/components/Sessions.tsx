@@ -7,8 +7,7 @@ import { Link } from 'react-router-dom'
 export default function Sessions() {
   const { data: sessions, isPending, isError } = useSessions()
   const { data: activities } = useActivities()
-  const deleteSession = useDeleteSession()
-  const queryClient = useQueryClient()
+
 
   if (isPending) return <div>Loading...</div>
   if (isError) return <div>Error loading sessions</div>
@@ -31,10 +30,7 @@ export default function Sessions() {
   }
 
 
-  const handleDelete = (id: number) => {
-    deleteSession.mutate(id)
-    queryClient.invalidateQueries({ queryKey: ['sessions'] })
-  }
+
 
   return (
     <div>
@@ -50,7 +46,6 @@ export default function Sessions() {
               <br></br>
               {session.distance} km - {session.duration} min
               <br></br>
-              <button onClick={() => handleDelete(session.id)}>Delete</button>
             </li>
           )
         })}

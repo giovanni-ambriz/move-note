@@ -89,6 +89,7 @@ router.delete('/:id', async (req, res) => {
   const id = Number(req.params.id)
   try {
     await db.deleteSession(id)
+    res.status(200).json({ message: 'Session deleted sucessfully' })
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'Something went wrong' })
