@@ -1,3 +1,116 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+  max-width: 500px;
+  width: 100%;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.app-footer {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-text {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.app-footer p {
+  margin: 0;
+  padding: 0;
+}
+
+.wellbeing-sidebar {
+  position: fixed; /* Fixes the sidebar to the right side */
+  top: 60px; /* Adjust based on the height of your navbar */
+  right: 0;
+  width: 250px; /* Adjust width as needed */
+  height: calc(100vh - 60px); /* Full viewport height minus navbar height */
+  background-color: #f4f4f4; /* Light background color */
+  border-left: 1px solid #ddd; /* Light border for separation */
+  padding: 20px; /* Space around content */
+  overflow-y: auto; /* Scroll if content overflows */
+}
+
+.wellbeing-sidebar h2 {
+  font-size: 1.5rem; /* Larger font size for the heading */
+  margin-bottom: 10px; /* Space below the heading */
+}
+
+.wellbeing-sidebar ul {
+  list-style: none; /* Remove default list styling */
+  padding: 0; /* Remove default padding */
+}
+
+.wellbeing-sidebar li {
+  margin-bottom: 10px; /* Space between list items */
+}
+
+.wellbeing-sidebar a {
+  text-decoration: none; /* Remove underline */
+  color: #007bff; /* Link color */
+}
+
+.wellbeing-sidebar a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Attribution styling */
+.attribution {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 0.875rem; /* Slightly smaller font size */
+  background-color: #fff; /* Light background for attribution */
+  border-top: 1px solid #ddd; /* Light border above attribution */
+  display: flex;
+  align-items: center;
+}
+
+.attribution img {
+  height: 40px; /* Adjust size as needed */
+  margin-right: 10px; /* Space between logo and text */
+}
+
+.attribution a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.attribution a:hover {
+  text-decoration: underline;
+}

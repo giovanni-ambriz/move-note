@@ -1,7 +1,8 @@
 import { Outlet } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
-import SessionForm from './AddSessionForm'
+import Home from './Home'
+import WellbeingArticles from './WellbeingArticles'
 
 export default function Layout() {
   return (
@@ -10,7 +11,8 @@ export default function Layout() {
         <div id="content-wrap">
           <Header />
           <Outlet />
-          <SessionForm />
+          <Home />
+          <WellbeingArticles />
         </div>
         <Footer />
       </div>

@@ -105,7 +105,7 @@ export default function SessionForm() {
         <label htmlFor="duration">Duration (minutes): </label>
         <input type="number" id="duration" value={duration} onChange={handleDurationChange} />
 
-        <label htmlFor="notes">How did you go?: </label>
+        <label htmlFor="notes">How did you feel?: </label>
         <input type="text" id="notes" value={notes} onChange={handleNotesChange} />
 
         <button type="submit">Submit</button>

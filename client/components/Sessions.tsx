@@ -1,11 +1,13 @@
 import { useActivities } from '../hooks/useActivities'
 import { useSessions } from '../hooks/useSessions'
 import { Link } from 'react-router-dom'
+import SessionForm from './AddSessionForm'
+import { useState } from 'react'
 
 export default function Sessions() {
   const { data: sessions, isPending, isError } = useSessions()
   const { data: activities } = useActivities()
-
+  const [showForm, setShowForm] = useState(false);
 
   if (isPending) return <div>Loading...</div>
   if (isError) return <div>Error loading sessions</div>
@@ -29,7 +31,7 @@ export default function Sessions() {
 
   return (
     <div>
-      <h1>Recent Activity:</h1>
+      <h1>Workout History:</h1>
       <ul>
         {sessions?.map(session => {
           const activity = activities?.find(act => act.id === session.activity_id)
@@ -45,7 +47,14 @@ export default function Sessions() {
           )
         })}
       </ul>
-      <button>New Workout Session</button>
+      <button onClick={() => setShowForm(true)}>Add New Workout</button>
+
+      {showForm && (
+        <div className="form-popup">
+          <button onClick={() => setShowForm(false)}>Cancel</button>
+          <SessionForm />
+        </div>
+      )}
     </div>
   )
 }

@@ -11,17 +11,21 @@ export default function SessionsByActivity() {
   return (
     <div>
       <h1>{sessions?.[0]?.name} - Workouts</h1>
-      <ul>
-        {sessions?.map(session => (
-          <li key={session.id}>
-            <Link to={`/sessions/${session.id}`}>
-              <p>Date: {session.date}</p>
-              <p>Distance: {session.distance} km</p>
-              <p>Duration: {session.duration} min</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {sessions && sessions.length > 0 ? (
+        <ul>
+          {sessions.map(session => (
+            <li key={session.id}>
+              <Link to={`/sessions/${session.id}`}>
+                <p>Date: {session.date}</p>
+                <p>Distance: {session.distance} km</p>
+                <p>Duration: {session.duration} min</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No sessions available yet. Start by adding a new workout!</p>
+      )}
     </div>
-  );
+  )
 }
