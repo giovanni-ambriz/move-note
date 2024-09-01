@@ -13,8 +13,7 @@ export default function Weather() {
   return (
     <div className="weather-widget">
       <img src={weatherIcon} alt={weatherDescription} className="weather-icon" />
-      <p>{temp}°C</p>
-      <p>{weatherDescription}</p>
+      <p>{temp}°C - {weatherDescription}</p>
     </div>
   );
 };

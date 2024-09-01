@@ -1,109 +1,204 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+  background-image: url('/client/public/daniel-olah-2cHW5TKr9Vs-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #e0e0e0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.main-content {
+  margin-top: 60px;
+  margin-right: 270px;
+  padding: 20px;
+  position: fixed;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+h1,
+h2,
+h3 {
+  color: #ffffff;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
 
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  position: relative;
-  max-width: 500px;
   width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
 }
 
-.modal-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+.sessions-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
 }
 
-.app-footer {
-  background-color: #2c3e50;
-  color: #ecf0f1;
-  padding: 20px;
+.sessions-table th,
+.sessions-table td {
+  border: 1px solid #333;
+  padding: 10px;
   text-align: center;
-  font-family: 'Roboto', sans-serif;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
 }
 
-.footer-text {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 300;
+.sessions-table th {
+  background-color: #333;
+  color: #ffffff;
 }
 
-.app-footer p {
-  margin: 0;
+.sessions-table tr:nth-child(even) {
+  background-color: #2c2c2c;
+}
+
+.sessions-table tr:hover {
+  background-color: #444;
+}
+
+ul,
+ol {
   padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+li {
+  margin-bottom: 10px;
+  color: #e0e0e0;
+}
+
+a {
+  color: #1e88e5;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #1565c0;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .sessions-table {
+    font-size: 14px;
+  }
 }
 
 .wellbeing-sidebar {
-  position: fixed; /* Fixes the sidebar to the right side */
-  top: 60px; /* Adjust based on the height of your navbar */
+  position: fixed;
   right: 0;
-  width: 250px; /* Adjust width as needed */
-  height: calc(100vh - 60px); /* Full viewport height minus navbar height */
-  background-color: #86adc4; /* Light background color */
-  border-left: 1px solid #ddd; /* Light border for separation */
-  padding: 20px; /* Space around content */
-  overflow-y: auto; /* Scroll if content overflows */
+  top: 60px;
+  width: 250px;
+  height: calc(100vh - 60px);
+  background-color: #333;
+  padding: 20px;
+  color: #fff;
+  overflow-y: auto;
+  z-index: 1000;
 }
 
 .wellbeing-sidebar h2 {
-  font-size: 1.5rem; /* Larger font size for the heading */
-  margin-bottom: 10px; /* Space below the heading */
+  color: #007bff;
+  font-size: 1.6em;
+  margin-bottom: 20px;
 }
 
 .wellbeing-sidebar ul {
-  list-style: none; /* Remove default list styling */
-  padding: 0; /* Remove default padding */
+  list-style: none;
+  padding: 0;
 }
 
 .wellbeing-sidebar li {
-  margin-bottom: 10px; /* Space between list items */
+  margin-bottom: 10px;
 }
 
 .wellbeing-sidebar a {
-  text-decoration: none; /* Remove underline */
-  color: #007bff; /* Link color */
+  text-decoration: none;
+  color: #007bff;
+  font-size: 1.2em;
 }
 
 .wellbeing-sidebar a:hover {
-  text-decoration: underline; /* Underline on hover */
+  text-decoration: underline;
 }
 
-/* Attribution styling */
+.wellbeing-sidebar .attribution {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.wellbeing-sidebar .attribution img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .wellbeing-sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+}
+
 .attribution {
   margin-top: 20px;
   padding: 10px;
-  font-size: 0.875rem; /* Slightly smaller font size */
-  background-color: #fff; /* Light background for attribution */
-  border-top: 1px solid #ddd; /* Light border above attribution */
+  font-size: 0.875rem;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
   display: flex;
   align-items: center;
 }
 
 .attribution img {
-  height: 40px; /* Adjust size as needed */
-  margin-right: 10px; /* Space between logo and text */
+  height: 40px;
+  margin-right: 10px;
 }
 
 .attribution a {
@@ -118,19 +213,147 @@
 .weather-widget {
   display: flex;
   align-items: center;
-  background-color: #f4f4f4;
+  background-color: #97afc8;
   padding: 5px 10px;
   border-radius: 5px;
   font-family: Arial, sans-serif;
-  position: fixed; /* Fixes the sidebar position */
-  top: 60px; /* Adjust to sit below the navbar */
-  right: 0;
-  width: 200px; /* Adjust width as needed */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .weather-icon {
-  width: 24px; /* Adjust size as needed */
+  width: 24px;
   height: 24px;
   margin-right: 10px;
+}
+
+.app-footer {
+  background-color: #121212;
+  color: #e0e0e0;
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #333;
+  font-size: 1em;
+}
+
+.footer-text {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.footer-text a {
+  color: #1e88e5;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-text a:hover {
+  color: #1565c0;
+}
+
+@media (max-width: 768px) {
+  .app-footer {
+    padding: 15px;
+    font-size: 1em;
+  }
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 20px;
+  text-decoration: none;
+  display: block;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card p {
+  margin: 10px 0;
+}
+
+.latest-sessions-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.latest-sessions-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+  margin: 10px;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.button.cancel {
+  background-color: #dc3545;
+}
+
+.button.cancel:hover {
+  background-color: #c82333;
+}
+
+.button.delete {
+  background-color: #dc3545;
+}
+
+.button.delete:hover {
+  background-color: #c82333;
+}
+
+.form-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }

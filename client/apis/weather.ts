@@ -5,7 +5,9 @@ const BASE_URL = 'https://api.weatherbit.io/v2.0/current'
 
 export async function fetchWeather(city: string) {
   try {
-    const response = await request.get(BASE_URL).query({ city, key: API_KEY })
+    const response = await request
+      .get(BASE_URL)
+      .query({ city, apikey: API_KEY })
     return response.body
   } catch (error) {
     console.error('Error fetching weather data:', error)

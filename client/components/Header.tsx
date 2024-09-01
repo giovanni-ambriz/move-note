@@ -21,7 +21,7 @@ export default function Header() {
         <Link to="/">MoveNoteApp</Link>
       </div>
       <nav className="nav-links">
-        <Link to="/sessions">Workouts</Link>
+        <Link to="/all-sessions">Workouts</Link>
         <div className="dropdown">
           <button className="dropbtn">Activities</button>
           <div className="dropdown-content">
@@ -33,9 +33,6 @@ export default function Header() {
           </div>
         </div>
       </nav>
-      <div className="user-profile">
-        <Link to="/profile">Profile</Link>
-      </div>
       <Weather />
     </header>
   );

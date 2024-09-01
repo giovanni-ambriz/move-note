@@ -1,7 +1,7 @@
-import { useAffirmation } from '../hooks/useAffirmation'
+import { useAffirmation } from '../hooks/useAffirmation';
 
 export default function Footer() {
-  const { data, isLoading, isError } = useAffirmation()
+  const { data, isLoading, isError } = useAffirmation();
 
   return (
     <footer className="app-footer">
@@ -11,6 +11,5 @@ export default function Footer() {
         <p className="footer-text">{data?.affirmation}</p>
       )}
     </footer>
-  )
+  );
 }
-

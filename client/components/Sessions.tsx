@@ -1,60 +1,51 @@
-import { useActivities } from '../hooks/useActivities'
-import { useSessions } from '../hooks/useSessions'
-import { Link } from 'react-router-dom'
-import SessionForm from './AddSessionForm'
-import { useState } from 'react'
+import { useActivities } from '../hooks/useActivities';
+import { useSessions } from '../hooks/useSessions';
+import { Link } from 'react-router-dom';
+import SessionForm from './AddSessionForm';
+import { useState } from 'react';
 
 export default function Sessions() {
-  const { data: sessions, isPending, isError } = useSessions()
-  const { data: activities } = useActivities()
+  const { data: sessions, isPending, isError } = useSessions();
+  const { data: activities } = useActivities();
   const [showForm, setShowForm] = useState(false);
 
-  if (isPending) return <div>Loading...</div>
-  if (isError) return <div>Error loading sessions</div>
+  if (isPending) return <div className="loading">Loading...</div>;
+  if (isError) return <div className="error">Error loading sessions</div>;
 
   const formatDate = (dateString: string | undefined) => {
-    if (!dateString) {
-      return 'No date available';
-    }
-
+    if (!dateString) return 'No date available';
     const date = new Date(dateString);
-    if (isNaN(date.getTime())) {
-      return 'Invalid date';
-    }
-
+    if (isNaN(date.getTime())) return 'Invalid date';
     return new Intl.DateTimeFormat('en-GB', {
       day: '2-digit',
       month: 'short',
       year: '2-digit'
     }).format(date);
-  }
+  };
 
   return (
-    <div>
-      <h1>Workout History:</h1>
-      <ul>
+    <div className="container">
+      <h1 className="title">Workout History:</h1>
+      <div className="card-container">
         {sessions?.map(session => {
-          const activity = activities?.find(act => act.id === session.activity_id)
+          const activity = activities?.find(act => act.id === session.activity_id);
           return (
-            <li key={session.id}>
-              <Link to={`/sessions/${session.id}`}>
-                {activity?.name} - {session.distance} km - {session.duration} min
-                <br></br>
-                {formatDate(session.date)}
-                <br></br>
-              </Link>
-            </li>
-          )
+            <Link to={`/sessions/${session.id}`} className="card" key={session.id}>
+              <h3>{activity?.name}</h3>
+              <p><strong>Distance:</strong> {session.distance} km</p>
+              <p><strong>Duration:</strong> {session.duration} min</p>
+              <p><strong>Date:</strong> {formatDate(session.date)}</p>
+            </Link>
+          );
         })}
-      </ul>
-      <button onClick={() => setShowForm(true)}>Add New Workout</button>
-
+      </div>
+      <button className="button" onClick={() => setShowForm(true)}>Add New Workout</button>
       {showForm && (
         <div className="form-popup">
-          <button onClick={() => setShowForm(false)}>Cancel</button>
-          <SessionForm />
+          <SessionForm onClose={() => setShowForm(false)} />
+          <button className="button cancel" onClick={() => setShowForm(false)}>Cancel</button>
         </div>
       )}
     </div>
-  )
+  );
 }

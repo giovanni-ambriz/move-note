@@ -8,7 +8,7 @@ import Home from './components/Home'
 const routes = createRoutesFromElements(
   <Route path="/" element={<Layout />}>
     <Route index element={<Home />} />
-    <Route path="/sessions/" element={<Sessions />} />
+    <Route path="/all-sessions/" element={<Sessions />} />
     <Route path="sessions/:id" element={<SessionDetails />} />
     <Route path="/activities/:activity_id/sessions" element={<SessionsByActivity />} />
   </Route>,

@@ -3,8 +3,13 @@ import { useState } from 'react'
 import { useUsers } from '../hooks/useUsers'
 import { useActivities } from '../hooks/useActivities'
 import { useAddSession } from '../hooks/useAddSession'
+import '../styles/sessionform.css'
 
-export default function SessionForm() {
+interface SessionFormProps {
+  onClose: () => void;
+}
+
+export default function SessionForm({ onClose }: SessionFormProps) {
   const [date, setDate] = useState('')
   const [time, setTime] = useState('00:00')
   const [distance, setDistance] = useState('')
@@ -66,50 +71,112 @@ export default function SessionForm() {
         setDistance('')
         setDuration('')
         setNotes('')
-
         queryClient.invalidateQueries({ queryKey: ['sessions'] })
+        onClose()
       }
     })
   }
 
-
   return (
-    <>
-      <h2>Add a new session:</h2>
-      <form onSubmit={handleSubmit} className='form'>
-        <label htmlFor="user">Your name: </label>
-        <select id="user" value={userId} onChange={handleUserChange}>
-          <option value="" disabled>Select your name</option>
-          {users.map(user => (
-            <option key={user.id} value={user.id}>{user.name}</option>
-          ))}
-        </select>
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <h2 className="text-2xl font-bold mb-4">Add a New Session</h2>
+        <form onSubmit={handleSubmit} className="form">
+          <div className="form-group">
+            <label htmlFor="user" className="form-label">Your Name:</label>
+            <select
+              id="user"
+              value={userId}
+              onChange={handleUserChange}
+              className="form-input"
+            >
+              <option value="" disabled>Select your name</option>
+              {users.map(user => (
+                <option key={user.id} value={user.id}>{user.name}</option>
+              ))}
+            </select>
+          </div>
 
-        <label htmlFor="activity">Activity: </label>
-        <select id="activity" value={activityId} onChange={handleActivityChange}>
-          <option value="" disabled>Select an activity</option>
-          {activities.map(activity => (
-            <option key={activity.id} value={activity.id}>{activity.name}</option>
-          ))}
-        </select>
+          <div className="form-group">
+            <label htmlFor="activity" className="form-label">Activity:</label>
+            <select
+              id="activity"
+              value={activityId}
+              onChange={handleActivityChange}
+              className="form-input"
+            >
+              <option value="" disabled>Select an activity</option>
+              {activities.map(activity => (
+                <option key={activity.id} value={activity.id}>{activity.name}</option>
+              ))}
+            </select>
+          </div>
 
-        <label htmlFor="date">Date: </label>
-        <input type="date" id="date" value={date} onChange={handleDateChange} />
+          <div className="form-group">
+            <label htmlFor="date" className="form-label">Date:</label>
+            <input
+              type="date"
+              id="date"
+              value={date}
+              onChange={handleDateChange}
+              className="form-input"
+            />
+          </div>
 
-        <label htmlFor="time">Time: </label>
-        <input type="time" id="time" value={time} onChange={handleTimeChange} />
+          <div className="form-group">
+            <label htmlFor="time" className="form-label">Time:</label>
+            <input
+              type="time"
+              id="time"
+              value={time}
+              onChange={handleTimeChange}
+              className="form-input"
+            />
+          </div>
 
-        <label htmlFor="distance">Distance (km): </label>
-        <input type="number" step="0.01" id="distance" value={distance} onChange={handleDistanceChange} />
+          <div className="form-group">
+            <label htmlFor="distance" className="form-label">Distance (km):</label>
+            <input
+              type="number"
+              step="0.01"
+              id="distance"
+              value={distance}
+              onChange={handleDistanceChange}
+              className="form-input"
+            />
+          </div>
 
-        <label htmlFor="duration">Duration (minutes): </label>
-        <input type="number" id="duration" value={duration} onChange={handleDurationChange} />
+          <div className="form-group">
+            <label htmlFor="duration" className="form-label">Duration (minutes):</label>
+            <input
+              type="number"
+              id="duration"
+              value={duration}
+              onChange={handleDurationChange}
+              className="form-input"
+            />
+          </div>
 
-        <label htmlFor="notes">How did you feel?: </label>
-        <input type="text" id="notes" value={notes} onChange={handleNotesChange} />
+          <div className="form-group">
+            <label htmlFor="notes" className="form-label">How Did You Feel?:</label>
+            <input
+              type="text"
+              id="notes"
+              value={notes}
+              onChange={handleNotesChange}
+              className="form-input"
+            />
+          </div>
 
-        <button type="submit">Submit</button>
-      </form>
-    </>
+          <button
+            type="submit"
+            className="form-button"
+          >
+            Submit
+          </button>
+          <button className="form-button cancel-button" onClick={onClose}>Cancel</button>
+        </form>
+      </div>
+    </div>
   )
 }
