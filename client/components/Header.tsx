@@ -36,7 +36,7 @@ export default function Header() {
       <div className="user-profile">
         <Link to="/profile">Profile</Link>
       </div>
-      {/* <Weather /> */}
+      <Weather />
     </header>
   );
 }
