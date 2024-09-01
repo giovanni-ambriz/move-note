@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import '../styles/header.css'
+import Weather from './Weather';
 
 export default function Header() {
   const activities = [
@@ -35,6 +36,7 @@ export default function Header() {
       <div className="user-profile">
         <Link to="/profile">Profile</Link>
       </div>
+      {/* <Weather /> */}
     </header>
   );
 }

@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
      * TODO: replace domain, clientId, and audience
      */
     <Auth0Provider
-      domain=""
-      clientId=""
+      domain="karaka-2024-giovanni.au.auth0.com"
+      clientId="h4gZbPAK0hEVcRClD5lSLyFWLwtRYLa4"
       authorizationParams={{
         redirect_uri: window.location.origin,
-        audience: '',
+        audience: 'https://movenote/api',
       }}
     >
       <QueryClientProvider client={queryClient}>

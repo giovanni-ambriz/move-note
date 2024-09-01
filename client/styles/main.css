@@ -61,7 +61,7 @@
   right: 0;
   width: 250px; /* Adjust width as needed */
   height: calc(100vh - 60px); /* Full viewport height minus navbar height */
-  background-color: #f4f4f4; /* Light background color */
+  background-color: #86adc4; /* Light background color */
   border-left: 1px solid #ddd; /* Light border for separation */
   padding: 20px; /* Space around content */
   overflow-y: auto; /* Scroll if content overflows */
@@ -113,4 +113,24 @@
 
 .attribution a:hover {
   text-decoration: underline;
+}
+
+.weather-widget {
+  display: flex;
+  align-items: center;
+  background-color: #f4f4f4;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  position: fixed; /* Fixes the sidebar position */
+  top: 60px; /* Adjust to sit below the navbar */
+  right: 0;
+  width: 200px; /* Adjust width as needed */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.weather-icon {
+  width: 24px; /* Adjust size as needed */
+  height: 24px;
+  margin-right: 10px;
 }

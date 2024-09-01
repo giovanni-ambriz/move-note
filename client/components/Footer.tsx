@@ -1,7 +1,6 @@
-import React from 'react'
 import { useAffirmation } from '../hooks/useAffirmation'
 
-const Footer: React.FC = () => {
+export default function Footer() {
   const { data, isLoading, isError } = useAffirmation()
 
   return (
@@ -14,4 +13,4 @@ const Footer: React.FC = () => {
     </footer>
   )
 }
-export default Footer
+
