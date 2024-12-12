@@ -25,10 +25,10 @@ export default function SessionDetails() {
 
   return (
     <div className="container">
-      <Link to={`/activities/${data?.activity.id}/sessions`} className="back-link">
-        {data?.activity.name}
-      </Link>
       <div className="card">
+        <Link to={`/activities/${data?.activity.id}/sessions`} className="back-link">
+          {data?.activity.name}
+        </Link>
         <p><strong>By:</strong> {data?.user.name}</p>
         <p><strong>Date:</strong> {data?.date}</p>
         <p><strong>Time:</strong> {data?.time}</p>

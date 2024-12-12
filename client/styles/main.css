@@ -17,7 +17,8 @@ body {
 
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin-top: 80px;
+  margin-right: 270px;
   padding: 20px;
 }
 
@@ -113,9 +114,20 @@ textarea {
   color: #e0e0e0;
 }
 
+.welcome-title {
+  color: #007bff;
+  text-align: center;
+}
+
+.back-link {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 10px;
+    margin-right: 0;
   }
 
   .button {
@@ -126,14 +138,20 @@ textarea {
   .sessions-table {
     font-size: 14px;
   }
+
+  .wellbeing-sidebar {
+    width: 100%;
+    position: relative;
+    top: 0;
+  }
 }
 
 .wellbeing-sidebar {
   position: fixed;
   right: 0;
-  top: 60px;
+  top: 78px;
   width: 250px;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 78px - 102px);
   background-color: #333;
   padding: 20px;
   color: #fff;
@@ -237,6 +255,7 @@ textarea {
   right: 0;
   border-top: 1px solid #333;
   font-size: 1em;
+  z-index: 999;
 }
 
 .footer-text {

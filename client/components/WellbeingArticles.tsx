@@ -26,7 +26,7 @@ export default function WellbeingArticles() {
         </ul>
       </div>
       <div className="attribution">
-        <a href="https://www.nhs.uk" target="_blank" rel="noopener noreferrer"><img src="https://www.nhs.uk/nhscwebservices/documents/logo1.jpg" alt="NHS logo" /></a>
+        <a href="https://www.nhs.uk" target="_blank" rel="noopener noreferrer"><img src="https://assets.nhs.uk/nhsuk-cms/images/nhs-attribution.width-510.png" alt="Content supplied by the NHS website" /></a>
       </div>
     </aside>
   );
