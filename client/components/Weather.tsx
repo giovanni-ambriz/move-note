@@ -1,7 +1,7 @@
 import { useWeather } from '../hooks/useWeather';
 
 export default function Weather() {
-  const { data, isLoading, isError } = useWeather('Wanaka')
+  const { data, isLoading, isError } = useWeather('Wellington')
 
   if (isLoading) return <p>Loading weather...</p>;
   if (isError) return <p>Error fetching weather</p>;
