@@ -1,10 +1,23 @@
 import { useQuery } from '@tanstack/react-query'
-import { fetchWeather } from '../apis/weather'
+interface WeatherData {
+  temperature: string
+  city_name: string
+  weather: {
+    description: string
+  }
+}
 
 export function useWeather(city: string) {
-  return useQuery({
+  return useQuery<WeatherData, Error>({
     queryKey: ['weather', city],
-    queryFn: () => fetchWeather(city),
-    staleTime: 3600000,
+    queryFn: async () => {
+      const res = await fetch(`/api/v1/weather?city=${city}`)
+
+      if (!res.ok) {
+        throw new Error('Failed to fetch weather data')
+      }
+
+      return res.json()
+    },
   })
 }
