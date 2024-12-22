@@ -1,6 +1,4 @@
-// useWellbeingArticles.ts
 import { useQuery } from '@tanstack/react-query'
-import { fetchWellbeingArticles } from '../apis/wellbeingArticles'
 
 interface Article {
   headline: string
@@ -11,7 +9,8 @@ export function useWellbeingArticles() {
   return useQuery<Article[], Error>({
     queryKey: ['wellbeingArticles'],
     queryFn: async () => {
-      const data = await fetchWellbeingArticles()
+      const res = await fetch('/api/v1/wellbeing-articles')
+      const data = await res.json()
 
       const canonicalLinks =
         data.mainEntityOfPage.find(
