@@ -2,6 +2,9 @@
  * @param { import("knex").Knex } knex
  */
 export async function up(knex) {
+
+  await knex.raw('PRAGMA foreign_keys = ON;');
+
   return knex.schema.createTable('sessions', (table) => {
     table.increments('id').primary()
     table.integer('user_id').references('id').inTable('users').onDelete('CASCADE')
